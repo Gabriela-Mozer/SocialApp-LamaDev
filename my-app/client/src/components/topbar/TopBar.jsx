@@ -1,10 +1,11 @@
 import "./topbar.css";
 //import {} from  '@mui/icons-material'
 
+import PersonIcon from "@mui/icons-material/Person";
+import ChatIcon from "@mui/icons-material/Chat";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+// import NAMES from "./data.json"
 
-import PersonIcon from '@mui/icons-material/Person';
-import ChatIcon from '@mui/icons-material/Chat';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 import { AiOutlineSearch } from "react-icons/ai";
 export default function TopBar() {
@@ -15,11 +16,17 @@ export default function TopBar() {
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          <AiOutlineSearch className="searchIcon"/>
+          <AiOutlineSearch className="searchIcon" />
           <input
             placeholder="Search for friends, post or video"
             className="searchInput"
           />
+          {/* {NAMES.map((item, key) => (
+            <p key={item.id}>
+              {item.Firstname} {item.Secondname}
+            </p>
+          ))} */}
+
         </div>
       </div>
       <div className="topbarRight">
@@ -41,7 +48,7 @@ export default function TopBar() {
             <span className="topbarIconBadge">3</span>
           </div>
         </div>
-        <img src="/assets/pics/gray.png" alt=""className="topbarImg" />
+        <img src="/assets/pics/gray.png" alt="" className="topbarImg" />
       </div>
     </div>
   );

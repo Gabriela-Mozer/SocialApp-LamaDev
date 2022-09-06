@@ -28,8 +28,12 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.sidebarListItemText{
+  cursor: pointer;
+}
 .sidebarIcon {
   margin-right: 15px;
+  cursor: pointer;
 }
 .sidebarButton {
   width: 150px;
