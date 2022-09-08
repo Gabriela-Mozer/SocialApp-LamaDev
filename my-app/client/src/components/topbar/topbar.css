@@ -15,7 +15,10 @@
   border-radius: 30px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  top: 5px;
 }
+
 .searchIcon {
   font-size: 20px;
   margin-left: 10px;
@@ -24,6 +27,25 @@
   border: none;
   width: 70%;
   outline: none;
+}
+.searchUserContainer{
+  display: flex;
+  /* align-items: center; */
+  border: none;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+}
+.searchUser::-webkit-scrollbar  {
+  /* overflow: visible; */
+  /* overflow: hidden; */
+  overflow-y: auto;
+  /* width: 50%; */
+}
+.searchUserPar {
+  /* display: none; */
+  list-style: none;
+  flex-direction: column;
 }
 .logo {
   font-size: 24px;

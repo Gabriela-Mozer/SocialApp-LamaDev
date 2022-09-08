@@ -3,12 +3,16 @@ import "./topbar.css";
 
 import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
+import CloseIcon from "@mui/icons-material/Close";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-// import NAMES from "./data.json"
-
-
+// import NAMES from "./data.json";
+import { Users } from "../../dumnyData";
+import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+
 export default function TopBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -17,18 +21,39 @@ export default function TopBar() {
       <div className="topbarCenter">
         <div className="searchbar">
           <AiOutlineSearch className="searchIcon" />
+
           <input
+            type="text"
             placeholder="Search for friends, post or video"
             className="searchInput"
+            // value={searchTerm}
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
           />
-          {/* {NAMES.map((item, key) => (
-            <p key={item.id}>
-              {item.Firstname} {item.Secondname}
-            </p>
-          ))} */}
 
+          {Users.filter((val) => {
+            if (searchTerm === "") {
+              return val;
+            } else if (
+              val.username.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          }).map((item, key) => {
+            return (
+              <div className="searchUserContainer" >
+                <ul className="searchUser">
+                  <li className="searchUserPar" key={key}>
+                    {item.username}
+                  </li>
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
+
       <div className="topbarRight">
         <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
