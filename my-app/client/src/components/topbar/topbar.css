@@ -9,43 +9,58 @@
   z-index: 999;
 }
 .searchbar {
-  width: 100%;
+
+  width: 90%;
   height: 30px;
   background-color: #fff;
   border-radius: 30px;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  top: 5px;
+
 }
 
 .searchIcon {
   font-size: 20px;
   margin-left: 10px;
+  cursor: pointer;
+ 
+}
+.closeIcon{
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 .searchInput {
-  border: none;
-  width: 70%;
-  outline: none;
-}
-.searchUserContainer{
   display: flex;
-  /* align-items: center; */
   border: none;
-  background-color: #fff;
-  width: 100%;
-  overflow: hidden;
+  /* width: 100%; */
+  outline: none;
+  align-self: center;
 }
-.searchUser::-webkit-scrollbar  {
-  /* overflow: visible; */
-  /* overflow: hidden; */
-  overflow-y: auto;
-  /* width: 50%; */
-}
-.searchUserPar {
-  /* display: none; */
-  list-style: none;
+.searchDataResult {
+  display: flex;
   flex-direction: column;
+  background-color: #fff;
+  overflow-y: auto;
+  overflow: hidden;
+  align-self: center;
+  text-align: center;
+  /* width: 100%; */
+  width:450px;
+  margin-top: 25px;
+  transform: translate(-30%, 51%);
+  box-shadow: 5px 6px 9px 5px rgba(214, 196, 196, 0.76);
+  -webkit-box-shadow: 5px 6px 9px 5px rgba(214, 196, 196, 0.76);
+  -moz-box-shadow: 5px 6px 9px 5px rgba(214, 196, 196, 0.76);
+}
+.searchDataResult::-webkit-scrollbar{
+  display: none;
+}
+.nameResult{
+  cursor: pointer;
+}
+.nameResult:hover{
+  background-color: rgb(206, 201, 195);
 }
 .logo {
   font-size: 24px;

@@ -1,18 +1,27 @@
 import "./topbar.css";
-//import {} from  '@mui/icons-material'
-
 import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-// import NAMES from "./data.json";
-import { Users } from "../../dumnyData";
+// import { Users } from "../../dumnyData";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export default function TopBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-
+export default function TopBar({ placeholder, data }) {
+  const [searchTerm, setSearchTerm] = useState([]);
+  // const [hideBar, setHideBar] = useState(false);
+  const handleFilter = (e) => {
+    const searchWord = e.target.value;
+    // e.preventDefault();
+    const newFilter = data.filter((value) => {
+      return value.username.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    if (searchWord === "") {
+      setSearchTerm([]);
+    } else {
+      setSearchTerm(newFilter);
+    }
+  };
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -20,37 +29,28 @@ export default function TopBar() {
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          <AiOutlineSearch className="searchIcon" />
-
-          <input
-            type="text"
-            placeholder="Search for friends, post or video"
-            className="searchInput"
-            // value={searchTerm}
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-
-          {Users.filter((val) => {
-            if (searchTerm === "") {
-              return val;
-            } else if (
-              val.username.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return val;
-            }
-          }).map((item, key) => {
-            return (
-              <div className="searchUserContainer" >
-                <ul className="searchUser">
-                  <li className="searchUserPar" key={key}>
-                    {item.username}
-                  </li>
-                </ul>
-              </div>
-            );
-          })}
+          {searchTerm.length ===0? <AiOutlineSearch className="searchIcon"/> :<CloseIcon className="closeIcon"/>}
+          
+          <div className="searchInputs">
+            <input
+              type="text"
+              placeholder={placeholder}
+              className="searchInput"
+              // value={searchTerm}
+              onChange={handleFilter}
+            />
+          </div>
+          {searchTerm.length !== 0 && (
+            <div className="searchDataResult">
+              {searchTerm.map((value, key) => {
+                return (
+                  <div className="nameResult" key={key}>
+                    <p>{value.username}</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
