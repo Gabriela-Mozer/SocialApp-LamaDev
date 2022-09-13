@@ -4,13 +4,20 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Users } from "../../dumnyData";
+import Share from "../share/Share";
 export default function Post({ post }) {
+  const [newPosts, setNewPosts] = useState([]);
   const [like, setLike] = useState(post.like);
   const [isLiked, setisLiked] = useState(false);
-  const likeHandler = () =>{
-    setLike(isLiked ? like-1: like+1) //kliknięcie raz w lajka doda ilość lajków pod zjęciem o 1
-    setisLiked(!isLiked) //ponowne klinięcie to odlajkowanie
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1); //kliknięcie raz w lajka doda ilość lajków pod zjęciem o 1
+    setisLiked(!isLiked); //ponowne klinięcie to odlajkowanie
+  };
+  const addNewPost =(newPost)=>{
+    const addedPost = [newPost,...newPosts]
+    setNewPosts(addedPost)
   }
+  console.log(...newPosts)
   return (
     <div className="post">
       <div className="postWrapper">
@@ -37,8 +44,8 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <ThumbUpIcon className="postLike" onClick={likeHandler}/>
-            <FavoriteIcon className="postHeart"onClick={likeHandler} />
+            <ThumbUpIcon className="postLike" onClick={likeHandler} />
+            <FavoriteIcon className="postHeart" onClick={likeHandler} />
             <span className="postLikeCounter">
               {like} people liked your photo
             </span>

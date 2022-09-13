@@ -1,7 +1,7 @@
 import "./topbar.css";
 import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 // import { Users } from "../../dumnyData";
 import { useState } from "react";
@@ -9,10 +9,10 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 export default function TopBar({ placeholder, data }) {
   const [searchTerm, setSearchTerm] = useState([]);
-  // const [hideBar, setHideBar] = useState(false);
+  const [wordEntered, setWordEntered] = useState("");
   const handleFilter = (e) => {
     const searchWord = e.target.value;
-    // e.preventDefault();
+    setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
       return value.username.toLowerCase().includes(searchWord.toLowerCase());
     });
@@ -22,6 +22,11 @@ export default function TopBar({ placeholder, data }) {
       setSearchTerm(newFilter);
     }
   };
+  const clearInput = (e) => {
+    setSearchTerm([]);
+    setWordEntered("");
+    e.preventDefault()
+  };
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -29,14 +34,22 @@ export default function TopBar({ placeholder, data }) {
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
-          {searchTerm.length ===0? <AiOutlineSearch className="searchIcon"/> :<CloseIcon className="closeIcon"/>}
-          
+          {(searchTerm.length === 0 && wordEntered ==="")? (
+            <AiOutlineSearch className="searchIcon" />
+          ) : (
+            <CloseIcon
+              id="closeBtn"
+              onClick={clearInput}
+              className="closeIcon"
+            />
+          )}
+
           <div className="searchInputs">
             <input
               type="text"
               placeholder={placeholder}
               className="searchInput"
-              // value={searchTerm}
+              value={wordEntered}
               onChange={handleFilter}
             />
           </div>

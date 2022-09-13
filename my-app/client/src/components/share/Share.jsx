@@ -3,8 +3,22 @@ import PermMediaIcon from '@mui/icons-material/PermMedia';
 import LabelIcon from '@mui/icons-material/Label';
 import RoomIcon from '@mui/icons-material/Room';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
+import { useState } from "react";
 
-export default function Share() {
+export default function Share(props) {
+  const [input, setInput]= useState('')
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    props.onSubmit({
+      id: Math.floor(Math.random() *1000),
+      text: input
+    });
+    setInput('')
+   
+  }
+  const handleChange=(e) =>{
+    setInput(e.target.value)
+  }
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -14,10 +28,15 @@ export default function Share() {
             src="/assets/pics/purplelo.png"
             alt=""
           />
-          <input
+          <form onSubmit={handleSubmit}>
+            <input
             placeholder="What's in your mind?"
             className="shareInput"
+            value={input}
+            onChange={handleChange}
           ></input>
+          </form>
+          
         </div>
         <hr className="shareHr" />
         <div className="shareBottom">
@@ -39,7 +58,7 @@ export default function Share() {
               <span className="shareOptionText">Feelings</span>
             </div>
           </div>
-          <button className="shareButton">Share</button>
+          <button className="shareButton" onClick={handleSubmit}>Share</button>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@
 .searchInput {
   display: flex;
   border: none;
-  /* width: 100%; */
+  width: 80%;
   outline: none;
   align-self: center;
 }
@@ -45,7 +45,6 @@
   overflow: hidden;
   align-self: center;
   text-align: center;
-  /* width: 100%; */
   width:450px;
   margin-top: 25px;
   transform: translate(-30%, 51%);
